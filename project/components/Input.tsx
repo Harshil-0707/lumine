@@ -1,5 +1,4 @@
 import { forwardRef } from 'react';
-import { clsx } from 'clsx';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -13,6 +12,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, className, type, showPassword, onTogglePassword, ...props }, ref) => {
     const isPassword = type === 'password';
 
+    const inputClasses = [
+      'w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors',
+      error ? 'border-red-500' : 'border-gray-300',
+      isPassword ? 'pr-12' : '',
+      className || '',
+    ]
+      .filter(Boolean)
+      .join(' ');
+
     return (
       <div className="w-full">
         <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -22,12 +30,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             ref={ref}
             type={showPassword ? 'text' : type}
-            className={clsx(
-              'w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors',
-              error ? 'border-red-500' : 'border-gray-300',
-              isPassword ? 'pr-12' : '',
-              className
-            )}
+            className={inputClasses}
             {...props}
           />
           {isPassword && (
@@ -51,3 +54,5 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+
+Input.displayName = "Input";

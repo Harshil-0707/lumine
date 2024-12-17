@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { ArrowRight, Cloud, Zap, Shield, BarChart } from "lucide-react";
+// import { Card } from "@/components/ui/card";
+import { ArrowRight, Zap,  } from "lucide-react";
 import Link from "next/link";
 import { Features } from "@/components/marketing/Features";
 import { Testimonials } from "@/components/marketing/Testimonials";

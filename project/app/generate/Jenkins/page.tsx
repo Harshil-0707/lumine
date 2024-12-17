@@ -44,7 +44,7 @@ export default function JenkinsPage() {
     // Reset messages before submitting
     setResponseMessage("");
     setErrorMessage("");
-
+  
     try {
       // Send data to the backend
       const response = await fetch("http://localhost:8080/api/generate-jenkinsfile", {
@@ -54,21 +54,26 @@ export default function JenkinsPage() {
         },
         body: JSON.stringify(data),
       });
-
+  
       // Check if the response is successful
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Error: ${response.status} - ${errorText}`);
       }
-
+  
       // Parse and display the Jenkinsfile
       const jenkinsfile = await response.text();
       setResponseMessage(jenkinsfile); // Set success message
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Handle errors (network or server-side)
-      setErrorMessage(error.message || "An unexpected error occurred");
+      if (error instanceof Error) {
+        setErrorMessage(error.message || "An unexpected error occurred");
+      } else {
+        setErrorMessage("An unexpected error occurred");
+      }
     }
   };
+  
 
   return (
     <div className="container px-4 py-6">

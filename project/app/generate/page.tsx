@@ -7,7 +7,6 @@ import {
   Cloud,
   Monitor,
   Settings,
-  Upload,
 } from "lucide-react";
 import { ConfigCard } from "@/components/generate/ConfigCard";
 

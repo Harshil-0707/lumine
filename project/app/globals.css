@@ -80,3 +80,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .border-border {
+    border-color: rgba(var(--border));
+  }
+}

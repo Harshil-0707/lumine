@@ -7,21 +7,21 @@ export function Testimonials() {
   const testimonials = [
     {
       quote:
-        "Lumine has transformed how we handle our infrastructure. It's like having a DevOps team in your pocket.",
+        'Lumine has transformed how we handle our infrastructure. It&apos;s like having a DevOps team in your pocket.', // Replace double quotes with single quotes
       author: "Sarah Chen",
       role: "CTO at TechStart",
       avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
     },
     {
       quote:
-        "The automated scaling features have saved us countless hours of manual work. Highly recommended!",
+        'The automated scaling features have saved us countless hours of manual work. Highly recommended!', // Same here
       author: "Michael Rodriguez",
       role: "Lead Developer at CloudScale",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
     },
     {
       quote:
-        "Security compliance used to be a nightmare. Lumine makes it seamless and worry-free.",
+        'Security compliance used to be a nightmare. Lumine makes it seamless and worry-free.', // And here
       author: "Emily Thompson",
       role: "Security Engineer at SecureFlow",
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
@@ -44,7 +44,7 @@ export function Testimonials() {
           {testimonials.map((testimonial) => (
             <Card key={testimonial.author} className="p-6">
               <blockquote className="text-lg mb-6">
-                "{testimonial.quote}"
+                &ldquo;{testimonial.quote}&rdquo; {/* Using &ldquo; and &rdquo; for quotes */}
               </blockquote>
               <div className="flex items-center space-x-4">
                 <Avatar>

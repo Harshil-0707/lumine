@@ -8,8 +8,6 @@ import {
   Zap,
   Clock,
   Users,
-  Bell,
-  Lock,
 } from "lucide-react";
 
 export function Features() {

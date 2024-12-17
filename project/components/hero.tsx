@@ -1,5 +1,4 @@
 import { Boxes } from '@/components/ui/background-boxes';
-import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { Rocket } from 'lucide-react';
 

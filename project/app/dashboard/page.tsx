@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -113,7 +113,7 @@ export default function Home() {
           <TabsContent value="security">
             <SecurityOverview />
           </TabsContent>
-        </Tabs>
+        </Tabs>  
       </div>
     </main>
     </>

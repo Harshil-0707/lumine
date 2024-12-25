@@ -1,12 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-// import { Card } from "@/components/ui/card";
-import { ArrowRight, Zap,  } from "lucide-react";
 import Link from "next/link";
+import { ArrowRight, Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Pricing } from "@/components/marketing/Pricing";
 import { Features } from "@/components/marketing/Features";
 import { Testimonials } from "@/components/marketing/Testimonials";
-import { Pricing } from "@/components/marketing/Pricing";
 
 export default function LandingPage() {
   return (
@@ -40,14 +39,14 @@ export default function LandingPage() {
         </div>
       </nav>
 
-
       <section className="py-20 px-4">
         <div className="container mx-auto text-center">
           <h1 className="text-5xl font-bold tracking-tight mb-6">
             DevOps Automation Made Simple
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Configure your entire infrastructure with just a few clicks. No DevOps expertise required.
+            Configure your entire infrastructure with just a few clicks. No
+            DevOps expertise required.
           </p>
           <div className="flex justify-center space-x-4">
             <Link href="/signup">
@@ -105,7 +104,6 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
-
     </div>
   );
 }

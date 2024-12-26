@@ -25,9 +25,10 @@ const DocumentationPage: React.FC = () => {
           <div>
             <h2 className="text-4xl font-semibold mb-4">Overview</h2>
             <p className="text-lg leading-relaxed">
-              Welcome to the <strong>DevOps-as-a-Service Platform</strong>! This web-based platform
-              simplifies infrastructure provisioning, CI/CD pipeline setup, and cloud cost estimation
-              for startups and small teams.
+              Welcome to the <strong>DevOps-as-a-Service Platform</strong>! This
+              web-based platform simplifies infrastructure provisioning, CI/CD
+              pipeline setup, and cloud cost estimation for startups and small
+              teams.
             </p>
           </div>
         );
@@ -37,18 +38,20 @@ const DocumentationPage: React.FC = () => {
             <h2 className="text-4xl font-semibold mb-4">Key Features</h2>
             <ul className="list-disc ml-6 text-lg leading-relaxed">
               <li>
-                <strong>Infrastructure Automation:</strong> Automatically provision cloud resources
-                using Terraform.
+                <strong>Infrastructure Automation:</strong> Automatically
+                provision cloud resources using Terraform.
               </li>
               <li>
-                <strong>CI/CD Pipeline Setup:</strong> Create CI/CD workflows using GitHub Actions.
+                <strong>CI/CD Pipeline Setup:</strong> Create CI/CD workflows
+                using GitHub Actions.
               </li>
               <li>
-                <strong>Cost Estimation Dashboard:</strong> Get real-time cost estimates for your
-                infrastructure.
+                <strong>Cost Estimation Dashboard:</strong> Get real-time cost
+                estimates for your infrastructure.
               </li>
               <li>
-                <strong>Monitoring:</strong> Configure Prometheus and Grafana for metrics monitoring.
+                <strong>Monitoring:</strong> Configure Prometheus and Grafana
+                for metrics monitoring.
               </li>
             </ul>
           </div>
@@ -64,10 +67,10 @@ const DocumentationPage: React.FC = () => {
       {/* Navbar */}
       <nav className="border-b bg-white py-4">
         <div className="container mx-auto flex h-16 items-center justify-between px-6">
-          <div className="flex items-center space-x-2">
+          <Link href={"/"} className="flex items-center space-x-2">
             <Zap className="h-6 w-6 text-primary" />
             <span className="text-2xl font-bold">Lumine</span>
-          </div>
+          </Link>
           <div className="flex items-center space-x-6">
             <Link href="/docs">
               <Button variant="ghost" className="text-sm">
@@ -95,7 +98,9 @@ const DocumentationPage: React.FC = () => {
       <div className="flex flex-1">
         {/* Sidebar */}
         <aside className="w-1/4 bg-white p-6 shadow-md border-r border-gray-200">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">Documentation</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">
+            Documentation
+          </h2>
           <ul className="space-y-4">
             {tabs.map((tab) => (
               <li key={tab.id}>
@@ -115,7 +120,9 @@ const DocumentationPage: React.FC = () => {
         </aside>
 
         {/* Content Area */}
-        <main className="w-3/4 p-8 bg-gray-50 overflow-y-auto">{renderContent()}</main>
+        <main className="w-3/4 p-8 bg-gray-50 overflow-y-auto">
+          {renderContent()}
+        </main>
       </div>
     </div>
   );

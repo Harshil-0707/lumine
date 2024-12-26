@@ -1,13 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation"; // Import useRouter
-import {
-  ArrowLeft,
-  Github,
-  Cloud,
-  Monitor,
-  Settings,
-} from "lucide-react";
+import { ArrowLeft, Github, Cloud, Monitor, Settings } from "lucide-react";
 import { ConfigCard } from "@/components/generate/ConfigCard";
 
 export default function GenerateConfigsPage() {
@@ -33,7 +27,7 @@ export default function GenerateConfigsPage() {
             Choose a service to generate configuration files
           </p>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+          <div className="grid gap-1 md:grid-cols-2 lg:grid-cols-2">
             {/* CI/CD Config Card */}
             <ConfigCardWrapper>
               <ConfigCard
@@ -116,7 +110,7 @@ export default function GenerateConfigsPage() {
 // Wrapper for consistent size of Config Cards
 function ConfigCardWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-72 h-80 flex items-center justify-center mx-auto">
+    <div className="w-[30rem] h-80 flex items-center justify-center mx-auto">
       {children}
     </div>
   );

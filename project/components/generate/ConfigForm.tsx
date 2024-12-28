@@ -49,17 +49,17 @@ export function ConfigForm({
   };
 
   return (
-    <Card className="p-6 max-w-[40%] w-[40%]  shadow-[1px_1px_14px_0px_#718096]">
+    <Card className="p-6 h-full w-[38rem] shadow-[1px_1px_14px_0px_#718096]">
       <ArrowLeft
         onClick={() => router.back()}
-        className="h-6 w-6 cursor-pointer text-primary hover:text-primary-dark mr-4 fixed left-[32px] top-10"
+        className="h-6 w-6 cursor-pointer text-primary hover:text-primary-dark mr-4 fixed left-[32px] top-10 max-md:top-8 max-md:left-6"
       />
       <h2 className="text-2xl font-bold mb-2">{title}</h2>
       <p className="text-muted-foreground mb-6">{description}</p>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-5 h-full">
         {fields.map((field) => (
-          <div key={field.name} className="space-y-2">
+          <div key={field.name}>
             <Label htmlFor={field.name}>{field.label}</Label>
             {field.type === "textarea" ? (
               <Textarea

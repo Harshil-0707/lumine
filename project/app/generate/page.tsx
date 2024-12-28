@@ -8,9 +8,9 @@ export default function GenerateConfigsPage() {
   const router = useRouter(); // Initialize useRouter
 
   return (
-    <div className="min-h-screen flex bg-background">
+    <div className="min-h-screen flex bg-background max-md:flex-col max-md:gap-y-10">
       {/* Left Section: Config Cards */}
-      <div className="flex-1 p-8">
+      <div className="px-8 pt-8 w-[50%] max-md:w-full">
         <div className="max-w-4xl mx-auto">
           {/* Title with Back Button */}
           <div className="flex items-center mb-6">
@@ -18,7 +18,7 @@ export default function GenerateConfigsPage() {
               onClick={() => router.back()}
               className="h-6 w-6 cursor-pointer text-primary hover:text-primary-dark mr-4"
             />
-            <h1 className="text-4xl font-bold tracking-tight">
+            <h1 className="text-4xl max-xl:text-3xl max-sm:text-2xl font-bold tracking-tight">
               Generate Configs at One Click
             </h1>
           </div>
@@ -27,7 +27,7 @@ export default function GenerateConfigsPage() {
             Choose a service to generate configuration files
           </p>
 
-          <div className="grid gap-1 md:grid-cols-2 lg:grid-cols-2">
+          <div className="grid w-full gap-10 grid-cols-2 max-xl:grid-cols-1 max-md:grid-cols-2 max-sm:grid-cols-1">
             {/* CI/CD Config Card */}
             <ConfigCardWrapper>
               <ConfigCard
@@ -89,7 +89,7 @@ export default function GenerateConfigsPage() {
       </div>
 
       {/* Right Section: Upload Button */}
-      <div className="flex-1 flex items-center justify-center bg-secondary p-8">
+      <div className="w-[50%] max-md:w-full flex items-center justify-center bg-secondary p-8">
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-4">Upload Files</h2>
           <p className="text-lg text-muted-foreground mb-6">
@@ -110,7 +110,7 @@ export default function GenerateConfigsPage() {
 // Wrapper for consistent size of Config Cards
 function ConfigCardWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-[30rem] h-80 flex items-center justify-center mx-auto">
+    <div className="max-w-[20rem] h-[16rem] flex items-center justify-center mx-auto">
       {children}
     </div>
   );

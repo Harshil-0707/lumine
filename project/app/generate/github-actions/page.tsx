@@ -87,7 +87,7 @@ export default function GitHubActionsPage() {
   };
 
   return (
-    <div className="px-4 py-6 flex justify-center items-center h-[100dvh]">
+    <div className="px-4 py-6 flex justify-center items-center h-[100dvh] max-sm:h-[120dvh]">
       <ConfigForm
         title="GitHub Actions Configuration"
         description="Configure GitHub Actions workflow settings"

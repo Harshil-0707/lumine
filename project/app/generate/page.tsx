@@ -10,7 +10,7 @@ export default function GenerateConfigsPage() {
   return (
     <div className="min-h-screen flex bg-background max-md:flex-col max-md:gap-y-10">
       {/* Left Section: Config Cards */}
-      <div className="px-8 pt-8 w-[50%] max-md:w-full">
+      <div className="p-8 w-[50%] max-md:w-full">
         <div className="max-w-4xl mx-auto">
           {/* Title with Back Button */}
           <div className="flex items-center mb-6">
@@ -89,8 +89,8 @@ export default function GenerateConfigsPage() {
       </div>
 
       {/* Right Section: Upload Button */}
-      <div className="w-[50%] max-md:w-full flex items-center justify-center bg-secondary p-8">
-        <div className="text-center">
+      <div className="w-[50%] max-md:w-full  flex items-center justify-center bg-secondary p-8 relative">
+        <div className="text-center sticky top-[2rem] bottom-[3rem]">
           <h2 className="text-2xl font-bold mb-4">Upload Files</h2>
           <p className="text-lg text-muted-foreground mb-6">
             Upload your files for further processing and deployment

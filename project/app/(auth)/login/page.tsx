@@ -18,8 +18,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <Card className="w-full max-w-md p-8">
+    <div className="min-h-screen flex items-center justify-center shadow-[1px_1px_14px_0px_#718096]">
+      <Card className="w-[80%] max-w-md p-8 max-sm:p-6">
         <div className="flex items-center justify-center mb-8">
           <Zap className="h-8 w-8 text-primary mr-2" />
           <h1 className="text-2xl font-bold">Lumine</h1>

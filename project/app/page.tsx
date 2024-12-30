@@ -74,21 +74,25 @@ export default function LandingPage() {
       </nav>
       <section className="py-20 px-4">
         <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-bold tracking-tight mb-6">
+          <h1 className="text-5xl font-bold tracking-tight mb-6 max-md:text-3xl">
             DevOps Automation Made Simple
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto max-md:text-lg">
             Configure your entire infrastructure with just a few clicks. No
             DevOps expertise required.
           </p>
-          <div className="flex justify-center space-x-4">
+          <div className="flex justify-center space-x-4 max-[375px]:flex-col">
             <Link href="/signup">
-              <Button size="lg" className="px-8">
+              <button className="w-[11rem] px-6 py-3 rounded-md text-sm font-medium max-[375px]:w-full max-[375px]:mb-2  flex items-center justify-center bg-black text-white">
                 Start Free Trial
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              </button>
             </Link>
-            <Button size="lg" variant="outline">
+            <Button
+              size="lg"
+              variant="outline"
+              className="max-[375px]:w-full max-[375px]:!ml-0"
+            >
               View Demo
             </Button>
           </div>

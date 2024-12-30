@@ -46,8 +46,8 @@ export function Pricing() {
   ];
 
   return (
-    <section className="py-20 px-4 bg-muted/50">
-      <div className="container mx-auto">
+    <section className="py-20 px-4 bg-muted/50 sm:px-6 lg:px-8">
+      <div className="mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight mb-4">
             Simple, Transparent Pricing
@@ -57,9 +57,14 @@ export function Pricing() {
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {plans.map((plan) => (
-            <Card key={plan.name} className="p-6">
+        <div className="grid gap-8 lg:grid-cols-3 sm:grid-cols-2">
+          {plans.map((plan, index) => (
+            <Card
+              key={plan.name}
+              className={`p-6 w-full flex flex-col justify-between ${
+                index === 2 ? "sm:col-span-2 lg:col-span-1" : ""
+              }`}
+            >
               <div className="mb-8">
                 <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                 <div className="text-3xl font-bold mb-2">{plan.price}</div>

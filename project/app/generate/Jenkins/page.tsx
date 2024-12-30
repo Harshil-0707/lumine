@@ -44,23 +44,26 @@ export default function JenkinsPage() {
     // Reset messages before submitting
     setResponseMessage("");
     setErrorMessage("");
-  
+
     try {
       // Send data to the backend
-      const response = await fetch("http://localhost:8080/api/generate-jenkinsfile", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-  
+      const response = await fetch(
+        "http://localhost:8080/api/generate-jenkinsfile",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
       // Check if the response is successful
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Error: ${response.status} - ${errorText}`);
       }
-  
+
       // Parse and display the Jenkinsfile
       const jenkinsfile = await response.text();
       setResponseMessage(jenkinsfile); // Set success message
@@ -73,10 +76,9 @@ export default function JenkinsPage() {
       }
     }
   };
-  
 
   return (
-    <div className="container px-4 py-6">
+    <div className="px-4 py-6 flex justify-center items-center h-[100dvh]">
       <ConfigForm
         title="Jenkins Configuration"
         description="Configure Jenkins job settings"

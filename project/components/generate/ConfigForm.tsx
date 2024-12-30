@@ -1,11 +1,18 @@
 "use client";
 
+import { useRouter } from "next/navigation"; // Import useRouter
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface ConfigField {
   name: string;
@@ -23,7 +30,12 @@ interface ConfigFormProps {
   onSubmit: (data: Record<string, string>) => void;
 }
 
-export function ConfigForm({ title, description, fields, onSubmit }: ConfigFormProps) {
+export function ConfigForm({
+  title,
+  description,
+  fields,
+  onSubmit,
+}: ConfigFormProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
@@ -35,13 +47,13 @@ export function ConfigForm({ title, description, fields, onSubmit }: ConfigFormP
   };
 
   return (
-    <Card className="p-6">
+    <Card className="p-6 w-[38rem] shadow-[1px_1px_14px_0px_#718096]">
       <h2 className="text-2xl font-bold mb-2">{title}</h2>
       <p className="text-muted-foreground mb-6">{description}</p>
-      
-      <form onSubmit={handleSubmit} className="space-y-6">
+
+      <form onSubmit={handleSubmit} className="space-y-5 h-full">
         {fields.map((field) => (
-          <div key={field.name} className="space-y-2">
+          <div key={field.name}>
             <Label htmlFor={field.name}>{field.label}</Label>
             {field.type === "textarea" ? (
               <Textarea
@@ -74,7 +86,9 @@ export function ConfigForm({ title, description, fields, onSubmit }: ConfigFormP
             )}
           </div>
         ))}
-        <Button type="submit" className="w-full">Generate Configuration</Button>
+        <Button type="submit" className="w-full text-wrap">
+          Generate Configuration
+        </Button>
       </form>
     </Card>
   );

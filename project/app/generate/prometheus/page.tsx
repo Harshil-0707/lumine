@@ -38,7 +38,7 @@ export default function PrometheusPage() {
     },
   ];
 
-  const handleSubmit = () => {}
+  const handleSubmit = () => {};
   // const handleSubmit = async (data: Record<string, string>) => {
   //   console.log("Prometheus config:", data);
 
@@ -56,7 +56,7 @@ export default function PrometheusPage() {
   // };
 
   return (
-    <div className="container px-4 py-6">
+    <div className="px-4 py-6 flex justify-center items-center h-[100dvh]">
       <ConfigForm
         title="Prometheus Configuration"
         description="Generate a Prometheus configuration file for monitoring"

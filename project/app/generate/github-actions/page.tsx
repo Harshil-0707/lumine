@@ -43,21 +43,24 @@ export default function GitHubActionsPage() {
   const handleSubmit = async (data: Record<string, string>) => {
     setResponseMessage(""); // Clear any previous success message
     setErrorMessage(""); // Clear any previous error message
-  
+
     try {
-      const response = await fetch("http://localhost:8080/api/generate-github-actions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-  
+      const response = await fetch(
+        "http://localhost:8080/api/generate-github-actions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
       if (response.ok) {
         // Create a Blob from the response
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
-  
+
         // Create an anchor element and trigger the download
         const a = document.createElement("a");
         a.href = url;
@@ -65,8 +68,10 @@ export default function GitHubActionsPage() {
         document.body.appendChild(a);
         a.click();
         a.remove();
-  
-        setResponseMessage("GitHub Actions YAML generated and downloaded successfully!");
+
+        setResponseMessage(
+          "GitHub Actions YAML generated and downloaded successfully!"
+        );
       } else {
         const errorResult = await response.json();
         setErrorMessage(
@@ -80,10 +85,9 @@ export default function GitHubActionsPage() {
       );
     }
   };
-  
 
   return (
-    <div className="container px-4 py-6">
+    <div className="px-4 py-6 flex justify-center items-center h-[100dvh] max-sm:h-[120dvh]">
       <ConfigForm
         title="GitHub Actions Configuration"
         description="Configure GitHub Actions workflow settings"
@@ -93,9 +97,7 @@ export default function GitHubActionsPage() {
       {responseMessage && (
         <div className="mt-4 text-green-600">{responseMessage}</div>
       )}
-      {errorMessage && (
-        <div className="mt-4 text-red-600">{errorMessage}</div>
-      )}
+      {errorMessage && <div className="mt-4 text-red-600">{errorMessage}</div>}
     </div>
   );
 }

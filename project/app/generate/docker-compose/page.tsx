@@ -41,7 +41,7 @@ export default function DockerComposePage() {
     },
   ];
 
-  const handleSubmit = () => {}
+  const handleSubmit = () => {};
   // const handleSubmit = async (data: Record<string, string>) => {
   //   console.log("Docker Compose config:", data);
 
@@ -59,7 +59,7 @@ export default function DockerComposePage() {
   // };
 
   return (
-    <div className="container px-4 py-6">
+    <div className="px-4 py-6 flex justify-center items-center h-[100dvh]">
       <ConfigForm
         title="Docker Compose Configuration"
         description="Generate a Docker Compose file for your services"

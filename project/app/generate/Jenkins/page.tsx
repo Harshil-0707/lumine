@@ -47,13 +47,16 @@ export default function JenkinsPage() {
 
     try {
       // Send data to the backend
-      const response = await fetch("http://localhost:8080/api/generate-jenkinsfile", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "http://localhost:8080/api/generate-jenkinsfile",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       // Check if the response is successful
       if (!response.ok) {
@@ -64,14 +67,18 @@ export default function JenkinsPage() {
       // Parse and display the Jenkinsfile
       const jenkinsfile = await response.text();
       setResponseMessage(jenkinsfile); // Set success message
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Handle errors (network or server-side)
-      setErrorMessage(error.message || "An unexpected error occurred");
+      if (error instanceof Error) {
+        setErrorMessage(error.message || "An unexpected error occurred");
+      } else {
+        setErrorMessage("An unexpected error occurred");
+      }
     }
   };
 
   return (
-    <div className="container px-4 py-6">
+    <div className="px-4 py-6 flex justify-center items-center h-[100dvh]">
       <ConfigForm
         title="Jenkins Configuration"
         description="Configure Jenkins job settings"

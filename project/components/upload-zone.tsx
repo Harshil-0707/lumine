@@ -1,80 +1,55 @@
 "use client";
 
-import { useCallback, useState } from "react";
-import { useDropzone } from "react-dropzone";
+import React, { useState } from "react";
 import { Upload, Loader2 } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Progress } from "@/components/ui/progress";
-import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/router";
-import Link from "next/link";
-// import axios from "axios";
 
-export default function UploadZone() {
+const UploadZone = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const { toast } = useToast();
 
+  const onDrop = async (acceptedFiles: File[]) => {
+    setIsUploading(true);
+    setProgress(0);
 
-  const onDrop = useCallback(
-    async (acceptedFiles: File[]) => {
-      setIsUploading(true);
-      setProgress(0);
+    const formData = new FormData();
+    acceptedFiles.forEach((file) => formData.append("file", file));
 
-      const formData = new FormData();
-      acceptedFiles.forEach((file) => formData.append("file", file)); // Correct key is 'file'
+    console.log("Accepted Files: ", acceptedFiles);
 
-      console.log("Accepted Files: ", acceptedFiles);
+    try {
+      const response = await fetch("http://localhost:8080/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (response.ok) {
+        console.log("Request has been sent");
 
-      try {
-        const response = await fetch("http://localhost:8080/upload", { // Replace with your backend URL
-          method: "POST",
-          body: formData,
-        });
-        if (response.ok) {
-          toast({
-            title: "Upload Complete",
-            description: "Your project is being analyzed and configured.",
-          });
-
-          console.log("Requeest has been sent bhai");
-
-          window.location.href = "/files"
-        } else {
-          throw new Error("Upload failed. Please try again.");
-        }
-      } catch (error) {
-        toast({
-          title: "Error",
-          description: "Could not upload file.",
-          variant: "destructive",
-        });
-      } finally {
-        setIsUploading(false);
-        setProgress(100); // Simulate completion
+        // Redirect after successful upload
+        window.location.href = "/files"; // Use window.location for redirect
+      } else {
+        throw new Error("Upload failed. Please try again.");
       }
-    },
-    [toast]
-  );
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    noClick: isUploading,
-    noKeyboard: isUploading,
-    disabled: isUploading,
-    accept: {},  // Allow directories to be dropped
-    multiple: true,        // Allow multiple files/folders
-  });
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    } finally {
+      setIsUploading(false);
+      setProgress(100); // Simulate completion
+    }
+  };
 
   return (
     <Container className="py-12">
       <div
-        {...getRootProps()}
-        className={`relative flex min-h-[300px] cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed bg-muted/50 p-12 text-center transition-colors ${isDragActive ? "border-primary" : "border-muted-foreground/25"
-          }`}
-      // whileTap={{ scale: 0.99 }}
+        className={`relative flex min-h-[300px] cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed bg-muted/50 p-12 text-center transition-colors ${isUploading ? "border-primary" : "border-muted-foreground/25"}`}
       >
-        <input {...getInputProps()} />
+        <input
+          type="file"
+          onChange={(e) => onDrop(Array.from(e.target.files || []))}
+          disabled={isUploading}
+          multiple
+        />
         {isUploading ? (
           <div className="flex flex-col items-center gap-4">
             <Loader2 className="h-12 w-12 animate-spin text-primary" />
@@ -99,4 +74,6 @@ export default function UploadZone() {
       </div>
     </Container>
   );
-}
+};
+
+export default UploadZone;

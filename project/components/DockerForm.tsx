@@ -1,33 +1,70 @@
 "use client";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { Component } from "react";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 
+// Define the types for the form data
 interface DockerFormData {
   username: string;
   password: string;
 }
 
-export const DockerForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+interface DockerFormState extends DockerFormData {
+  showPassword: boolean;
+  isLoading: boolean;
+  errors: Record<string, string | undefined>; // Explicit typing for errors
+}
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<DockerFormData>();
+export class DockerForm extends Component<{}, DockerFormState> {
+  state: DockerFormState = {
+    username: "",
+    password: "",
+    showPassword: false,
+    isLoading: false,
+    errors: Object.create(null),  // Errors is explicitly typed as Record<string, string | undefined>
+  };
 
-  const onSubmit = async (data: DockerFormData) => {
-    setIsLoading(true);
+  validateForm = (): boolean => {
+    const errors: Record<string, string | undefined> = {}; // Correct type for errors
+    let isValid = true;
+
+    // Validate username
+    if (this.state.username.trim().length < 4) {
+      errors.username = "Username must be at least 4 characters";
+      isValid = false;
+    }
+
+    // Validate password
+    if (this.state.password.length < 8) {
+      errors.password = "Password must be at least 8 characters";
+      isValid = false;
+    }
+
+    this.setState({ errors });
+    return isValid;
+  };
+
+  handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value } as unknown as Pick<DockerFormState, keyof DockerFormState>);
+  };
+
+  handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!this.validateForm()) return;
+
+    this.setState({ isLoading: true });
+
     try {
       const response = await fetch("http://localhost:8080/api/docker-login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          username: this.state.username,
+          password: this.state.password,
+        }),
       });
 
       if (!response.ok) {
@@ -40,46 +77,41 @@ export const DockerForm = () => {
       alert("Login successful!");
     } catch (error) {
       console.error("Error:", error);
-      // alert("Login failed: " + error.message);
+      alert("Login failed: " + error);
     } finally {
-      setIsLoading(false);
+      this.setState({ isLoading: false });
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <Input
-        label="Docker Hub Username"
-        {...register("username", {
-          required: "Username is required",
-          minLength: {
-            value: 4,
-            message: "Username must be at least 4 characters",
-          },
-        })}
-        error={errors.username?.message}
-        autoComplete="username"
-      />
+  render() {
+    const { username, password, showPassword, isLoading, errors } = this.state;
 
-      <Input
-        label="Password"
-        type="password"
-        {...register("password", {
-          required: "Password is required",
-          minLength: {
-            value: 8,
-            message: "Password must be at least 8 characters",
-          },
-        })}
-        error={errors.password?.message}
-        showPassword={showPassword}
-        onTogglePassword={() => setShowPassword(!showPassword)}
-        autoComplete="current-password"
-      />
+    return (
+      <form onSubmit={this.handleSubmit} className="space-y-6">
+        <Input
+          label="Docker Hub Username"
+          name="username"
+          value={username}
+          onChange={this.handleChange}
+          error={errors.username}
+          autoComplete="username"
+        />
 
-      <Button type="submit" className="w-full" isLoading={isLoading}>
-        Sign In
-      </Button>
-    </form>
-  );
-};
+        <Input
+          label="Password"
+          name="password"
+          type={showPassword ? "text" : "password"}
+          value={password}
+          onChange={this.handleChange}
+          error={errors.password}
+          onTogglePassword={() => this.setState({ showPassword: !showPassword })}
+          autoComplete="current-password"
+        />
+
+        <Button type="submit" className="w-full" isLoading={isLoading}>
+          Sign In
+        </Button>
+      </form>
+    );
+  }
+}

@@ -22,7 +22,7 @@ Lumine is a CLI tool that simplifies the process of setting up DevOps automation
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/lumine.git
+    git clone https://github.com/Nexusrex18/lumine.git
     cd lumine
     ```
 

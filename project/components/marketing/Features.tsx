@@ -1,16 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import {
-  Cloud,
-  Shield,
-  BarChart,
-  Zap,
-  Clock,
-  Users,
-  Bell,
-  Lock,
-} from "lucide-react";
+import { Cloud, Shield, BarChart, Zap, Clock, Users } from "lucide-react";
 
 export function Features() {
   const features = [
@@ -23,14 +14,12 @@ export function Features() {
     {
       icon: Shield,
       title: "Security First",
-      description:
-        "Pre-configured security settings and compliance monitoring",
+      description: "Pre-configured security settings and compliance monitoring",
     },
     {
       icon: BarChart,
       title: "Cost Management",
-      description:
-        "Track and optimize your infrastructure costs in real-time",
+      description: "Track and optimize your infrastructure costs in real-time",
     },
     {
       icon: Zap,
@@ -41,14 +30,12 @@ export function Features() {
     {
       icon: Clock,
       title: "24/7 Monitoring",
-      description:
-        "Continuous monitoring and instant alerts for your services",
+      description: "Continuous monitoring and instant alerts for your services",
     },
     {
       icon: Users,
       title: "Team Collaboration",
-      description:
-        "Built-in tools for team coordination and access management",
+      description: "Built-in tools for team coordination and access management",
     },
   ];
 
@@ -60,7 +47,8 @@ export function Features() {
             Everything You Need for DevOps Success
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Streamline your development workflow with our comprehensive suite of tools
+            Streamline your development workflow with our comprehensive suite of
+            tools
           </p>
         </div>
 

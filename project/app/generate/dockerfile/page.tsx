@@ -47,7 +47,7 @@ export default function DockerfilePage() {
 
     try {
       const res = await fetch(
-        "http://localhost:8080/api/generate-go-dockerfile",
+        "https://lumine-04wz.onrender.com/api/generate-go-dockerfile",
         {
           method: "POST",
           headers: {

@@ -48,7 +48,7 @@ export default function JenkinsPage() {
     try {
       // Send data to the backend
       const response = await fetch(
-        "http://localhost:8080/api/generate-jenkinsfile",
+        "https://lumine-04wz.onrender.com/api/generate-jenkinsfile",
         {
           method: "POST",
           headers: {

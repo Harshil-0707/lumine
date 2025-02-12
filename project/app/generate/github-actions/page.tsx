@@ -46,7 +46,7 @@ export default function GitHubActionsPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/api/generate-github-actions",
+        "https://lumine-04wz.onrender.com/api/generate-github-actions",
         {
           method: "POST",
           headers: {

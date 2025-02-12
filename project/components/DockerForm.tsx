@@ -56,7 +56,7 @@ export class DockerForm extends Component<{}, DockerFormState> {
     this.setState({ isLoading: true });
 
     try {
-      const response = await fetch("http://localhost:8080/api/docker-login", {
+      const response = await fetch("https://lumine-04wz.onrender.com/api/docker-login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -19,7 +19,7 @@ const UploadZone = () => {
     console.log("Accepted Files: ", acceptedFiles);
 
     try {
-      const response = await fetch("http://localhost:8080/upload", {
+      const response = await fetch("https://lumine-04wz.onrender.com/upload", {
         method: "POST",
         body: formData,
       });

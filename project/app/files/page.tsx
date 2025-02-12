@@ -12,7 +12,7 @@ export default function UploadFilesPage() {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const response = await fetch('http://localhost:8080/files');
+        const response = await fetch('https://lumine-04wz.onrender.com/files');
         if (!response.ok) throw new Error('Failed to fetch files');
         const data = await response.json();
         setFiles(data);

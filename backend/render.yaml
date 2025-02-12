@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: lumine
+    runtime: go
+    buildCommand: go build -o server .
+    startCommand: ./server
+    envVars:
+      - key: PORT
+        value: "8080"
+      - key: CORS_ALLOWED_ORIGINS
+        value: "https://lumineops.vercel.app"

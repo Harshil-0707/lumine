@@ -20,13 +20,19 @@ func main() {
 	routes.RegisterRoutes(r)
 
 	// Enable CORS to allow requests from the frontend (e.g., http://localhost:3000)
-	allowedOrigins := handlers.AllowedOrigins([]string{os.Getenv("CORS_ALLOWED_ORIGINS")})
+	allowedOrigins := handlers.AllowedOrigins([]string{
+		os.Getenv("CORS_ALLOWED_ORIGINS"),
+		"https://lumineops.vercel.app", // Ensure your frontend is allowed
+	})
 	allowedMethods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "OPTIONS"})
 	allowedHeaders := handlers.AllowedHeaders([]string{"Content-Type", "Authorization"})
 
+	r.Use(mux.CORSMethodMiddleware(r))
+	corsHandler := handlers.CORS(allowedOrigins, allowedMethods, allowedHeaders)(r)
+
 	// Set up a server with custom configurations
 	server := &http.Server{
-		Handler:      handlers.CORS(allowedOrigins, allowedMethods, allowedHeaders)(r), // Apply CORS middleware
+		Handler:     corsHandler, // Apply CORS middleware
 		Addr:         ":" + os.Getenv("PORT"),                                                          // Server listens on port 8080
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
